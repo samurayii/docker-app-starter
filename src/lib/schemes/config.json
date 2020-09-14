@@ -1,1 +1,46 @@
-{}
+{
+    "type": "object",
+    "properties": {
+        "logger": {
+            "type": "object",
+            "default": {},
+            "properties": {
+                "enable": {
+                    "type": "boolean",
+                    "default": true,
+                    "enum": [true, false]
+                },
+                "timestamp": {
+                    "type": "string",
+                    "default": "time",
+                    "enum": ["none", "time", "full"]
+                },
+                "type": {
+                    "type": "boolean",
+                    "default": true,
+                    "enum": [true, false]
+                },
+                "mode": {
+                    "type": "string",
+                    "default": "prod",
+                    "enum": ["dev", "prod", "debug"]
+                }
+            },
+            "required": [
+                "enable",
+                "mode",
+                "timestamp",
+                "type"
+            ]
+        },
+        "app": {
+            "type": "array",
+            "default": [],
+            "minItems": 1
+        }
+    },
+    "required": [
+        "logger",
+        "app"
+    ]
+}

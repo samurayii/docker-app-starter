@@ -1,0 +1,68 @@
+{
+    "type": "object",
+    "properties": {
+        "name": {
+            "type": "string",
+            "default": "app",
+            "minLength": 1,
+            "maxLength": 32
+        },
+        "cwd": {
+            "type": "string",
+            "default": "./",
+            "minLength": 1,
+            "maxLength": 128
+        },
+        "command": {
+            "type": "string",
+            "default": "/bin/sh",
+            "minLength": 1,
+            "maxLength": 256
+        },
+        "critical": {
+            "type": "boolean",
+            "default": true,
+            "enum": [true, false]
+        },
+        "env": {
+            "type": "object",
+            "properties": {
+                "scope": {
+                    "type": "string",
+                    "default": "all",
+                    "enum": ["none", "all", "app", "os"]
+                },
+                "include_regexp": {
+                    "type": "string",
+                    "default": ".*",
+                    "minLength": 1,
+                    "maxLength": 256
+                },
+                "keys": {
+                    "type": "object",
+                    "default": {},
+                    "patternProperties": {
+                        "[a-zA-z]{1}[a-zA-z0-9_]{0,127}": { 
+                            "type": "string",
+                            "minLength": 0,
+                            "maxLength": 256
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "required": [
+                "scope",
+                "include_regexp",
+                "keys"
+            ]
+        }
+    },
+    "required": [
+        "name",
+        "cwd",
+        "command",
+        "critical",
+        "env"
+    ]
+}

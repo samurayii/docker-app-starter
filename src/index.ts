@@ -1,4 +1,5 @@
 #!/usr/bin/env node
 import config from "./lib/entry";
 
-console.log(config);
+console.log(JSON.stringify(config, null, 4));
+

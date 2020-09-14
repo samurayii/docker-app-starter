@@ -1,0 +1,16 @@
+[logger]                # настройка логгера
+    mode = "prod"       # режим (prod или dev или debug)
+    enable = true       # активация логгера
+    timestamp = "none"  # выводить время лога (none, time или full)
+    type = true         # выводить тип лога (true или false)
+
+[[app]]
+    name = "app"            # имя процесса (должно быть уникальным)
+    cwd = "./"              # рабочая папка процесса
+    command = "/bin/sh"     # команда запуска приложения
+    critical = true         # критичность процесса (true или false)
+    [app.env]               # настройка переменых среды для процесса
+        scope = "all"                  # применяемые пространства (none, app, os, all)
+        include_regexp = ".*"          # regexp для переменных вхождения
+        [app.env.keys]                 # переменые пространства "app"
+            APP_NAME = "app-name"
