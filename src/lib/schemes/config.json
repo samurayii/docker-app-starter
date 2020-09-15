@@ -4,25 +4,30 @@
         "logger": {
             "type": "object",
             "default": {},
+            "env": "DOCKER_APP_STARTER_LOGGER",
             "properties": {
                 "enable": {
                     "type": "boolean",
                     "default": true,
+                    "env": "DOCKER_APP_STARTER_LOGGER_ENABLE",
                     "enum": [true, false]
                 },
                 "timestamp": {
                     "type": "string",
                     "default": "time",
+                    "env": "DOCKER_APP_STARTER_LOGGER_TIMESTAMP",
                     "enum": ["none", "time", "full"]
                 },
                 "type": {
                     "type": "boolean",
                     "default": true,
+                    "env": "DOCKER_APP_STARTER_LOGGER_TYPE",
                     "enum": [true, false]
                 },
                 "mode": {
                     "type": "string",
                     "default": "prod",
+                    "env": "DOCKER_APP_STARTER_LOGGER_MODE",
                     "enum": ["dev", "prod", "debug"]
                 }
             },
@@ -36,6 +41,7 @@
         "app": {
             "type": "array",
             "default": [],
+            "env": "DOCKER_APP_STARTER_APP",
             "minItems": 1
         }
     },

@@ -24,6 +24,11 @@
             "default": true,
             "enum": [true, false]
         },
+        "restart": {
+            "type": "boolean",
+            "default": false,
+            "enum": [true, false]
+        },
         "env": {
             "type": "object",
             "properties": {
