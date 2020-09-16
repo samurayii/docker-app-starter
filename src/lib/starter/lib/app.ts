@@ -130,11 +130,11 @@ export class App extends EventEmitter implements IStarterApp  {
 
             this._restarting_flag = true;
 
-            this._logger.log(`[Starter] Restarting app ${this._config.name}`);
+            this._logger.log(`[Starter] Restarting app ${this._config.name}, after ${this._config.restart_interval} sec`);
 
             this._id_interval = setTimeout( () => {
                 this.run();
-            }, 3000);
+            }, this._config.restart_interval * 1000);
 
         });
 

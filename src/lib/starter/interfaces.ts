@@ -7,6 +7,7 @@ export interface IStarterAppConfig {
     command: string
     critical: boolean
     restart: boolean
+    restart_interval: number
     env: {
         scope: string
         include_regexp: string

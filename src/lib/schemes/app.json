@@ -29,6 +29,11 @@
             "default": false,
             "enum": [true, false]
         },
+        "restart_interval": {
+            "type": "integer",
+            "default": 2,
+            "minimum": 1
+        },
         "env": {
             "type": "object",
             "properties": {
@@ -68,6 +73,8 @@
         "cwd",
         "command",
         "critical",
+        "restart",
+        "restart_interval",
         "env"
     ]
 }

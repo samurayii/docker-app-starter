@@ -10,6 +10,7 @@
     command = "/bin/sh"     # команда запуска приложения
     critical = true         # критичность процесса (true или false)
     restart = false         # перезагрузка при закрытии (игнорируется если critical = true)
+    restart_interval = 2    # интервал перезагрузки (активируется при ключе restart = true)
     [app.env]               # настройка переменных среды для процесса
         scope = "all"                  # применяемые пространства (none, app, os, all)
         include_regexp = ".*"          # regexp для переменных вхождения

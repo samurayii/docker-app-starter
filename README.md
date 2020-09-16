@@ -48,6 +48,7 @@
     command = "/bin/sh"     # команда запуска приложения
     critical = true         # критичность процесса (true или false)
     restart = false         # перезагрузка при закрытии (игнорируется если critical = true)
+    restart_interval = 2    # интервал перезагрузки (активируется при ключе restart = true)
     [app.env]               # настройка переменных среды для процесса
         scope = "all"                  # применяемые пространства (none, app, os, all)
         include_regexp = ".*"          # regexp для переменных вхождения
@@ -69,11 +70,12 @@
 | logger.enable | логический | true | активация логгера |
 | logger.timestamp | логический | false | выводить время лога (true или false) |
 | logger.type | логический | true | выводить тип лога (true или false) |
-| app.name | логический | true | имя процесса (должно быть уникальным) |
-| app.cwd | логический | true | рабочая папка процесса |
-| app.command | логический | true | команда запуска приложения |
+| app.name | строка | | имя процесса (должно быть уникальным) |
+| app.cwd | строка | ./ | рабочая папка процесса |
+| app.command | строка | /bin/sh | команда запуска приложения |
 | app.critical | логический | true | критичность процесса (true или false) |
-| app.restart | логический | true | перезагрузка при закрытии (игнорируется если critical = true) |
-| app.env.scope | логический | true | применяемые пространства (none, app, os, all) |
-| app.env.include_regexp | логический | true | regexp для переменных вхождения |
-| app.env.keys | логический | true | переменные пространства "app" |
+| app.restart | логический | false | перезагрузка при закрытии (игнорируется если critical = true) |
+| app.restart_interval | число | 2 | интервал перезагрузки (активируется при ключе restart = true) |
+| app.env.scope | строка | all | применяемые пространства (none, app, os, all) |
+| app.env.include_regexp | строка | .* | regexp для переменных вхождения |
+| app.env.keys | объект | {} | переменные пространства "app" |

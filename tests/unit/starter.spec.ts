@@ -6,7 +6,7 @@ describe("Store", function() {
 
     const logger = new Logger({
         mode: "debug",
-        enable: false,
+        enable: true,
         type: true,
         timestamp: "time"
     });
@@ -19,6 +19,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -42,6 +43,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -78,6 +80,7 @@ describe("Store", function() {
             command: "node ../test_app221.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -112,6 +115,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -125,6 +129,7 @@ describe("Store", function() {
             command: "node ../test_app2.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -161,6 +166,7 @@ describe("Store", function() {
             command: "node ../test_app_error.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -194,6 +200,7 @@ describe("Store", function() {
             command: "node ../test_app_error.js",
             critical: false,
             restart: true,
+            restart_interval: 3,
             env: {
                 scope: "none",
                 include_regexp: ".*",
@@ -218,7 +225,7 @@ describe("Store", function() {
             }, 2000);
         }, 7000);
     });
-    
+  
     it("run and stop (ENV=app)", function(done) {
 
         this.timeout(10000);
@@ -230,6 +237,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "app",
                 include_regexp: ".*",
@@ -277,6 +285,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "os",
                 include_regexp: ".*",
@@ -318,6 +327,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "all",
                 include_regexp: ".*",
@@ -365,6 +375,7 @@ describe("Store", function() {
             command: "node ../test_app1.js",
             critical: true,
             restart: false,
+            restart_interval: 2,
             env: {
                 scope: "all",
                 include_regexp: ".*",
