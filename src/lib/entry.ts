@@ -9,6 +9,7 @@ import json_from_schema from "json-from-default-schema";
 import * as config_schema from "./schemes/config.json";
 import * as app_schema from "./schemes/app.json";
 import { IAppConfig } from "./config.interface";
+import { IStarterAppConfig } from "./starter";
  
 const pkg = finder(__dirname).next().value;
 
@@ -27,16 +28,23 @@ if (!fs.existsSync(full_config_path)) {
 
 const config: IAppConfig = <IAppConfig>json_from_schema(jtomler(full_config_path), config_schema);
 
+let i = 0;
 
-for (const item of config.app) {
+for (let item of config.app) {
+
+    item = <IStarterAppConfig>json_from_schema(item, app_schema);
 
     const ajv_item = new Ajv();
     const validate_item = ajv_item.compile(app_schema);
 
     if (!validate_item(item)) {
-        console.error(chalk.red(`[ERROR] Config authorization.users parsing error. Schema errors:\n${JSON.stringify(validate_item.errors, null, 2)}`));
+        console.error(chalk.red(`[ERROR] Config app parsing error. Schema errors:\n${JSON.stringify(validate_item.errors, null, 2)}`));
         process.exit(1);
     }
+
+    config.app[i] = item;
+
+    ++i;
 
 }
 
