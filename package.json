@@ -1,6 +1,6 @@
 {
     "name": "docker-app-starter",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "Starter for docker app",
     "main": "index.js",
     "directories": {

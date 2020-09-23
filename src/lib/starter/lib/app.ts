@@ -100,11 +100,11 @@ export class App extends EventEmitter implements IStarterApp  {
         });
 
         this._app.stdout.on("data", (data) => {
-            this._logger.log(`[Starter:${this._config.name}] ${data.toString().trim()}`);
+            this._logger.log(`[${this._config.name}] ${data.toString().trim()}`);
         });
 
         this._app.stderr.on("data", (data) => {
-            this._logger.error(`[Starter:${this._config.name}] ${data.toString().trim()}`);
+            this._logger.error(`[${this._config.name}] ${data.toString().trim()}`);
         });
 
         this._app.on("close", (code) => {
