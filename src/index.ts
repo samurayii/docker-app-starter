@@ -9,6 +9,16 @@ const starter = new Starter(config.app, logger);
 starter.run();
 
 process.on("SIGTERM", () => {
-    console.log("💀 Termination signal received 💀");
-    process.exit();
+
+    logger.log("[Starter] Termination signal received");
+
+    starter.on("app:close", (app_name) => {
+        logger.log(`[Starter] Application ${app_name} closed`);
+        if (starter.count <= 0) {
+            process.exit();
+        }
+    });
+
+    starter.stop();
+    
 });

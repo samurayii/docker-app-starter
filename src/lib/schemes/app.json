@@ -34,6 +34,11 @@
             "default": 2,
             "minimum": 1
         },
+        "close_interval": {
+            "type": "integer",
+            "default": 10,
+            "minimum": 1
+        },
         "env": {
             "type": "object",
             "default": {},
@@ -76,6 +81,7 @@
         "critical",
         "restart",
         "restart_interval",
+        "close_interval",
         "env"
     ]
 }

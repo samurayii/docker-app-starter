@@ -1,10 +1,11 @@
+import { EventEmitter } from "events";
 import { ILogger } from "logger-flx";
 import { IStarter, IStarterAppConfig } from "./interfaces";
 import { App } from "./lib/app";
 
 export * from "./interfaces";
 
-export class Starter implements IStarter {
+export class Starter extends EventEmitter implements IStarter {
 
     private readonly _app_list: {
         [key: string]: App
@@ -14,6 +15,8 @@ export class Starter implements IStarter {
         private readonly _config: IStarterAppConfig[],
         private readonly _logger: ILogger
     ) {
+
+        super();
 
         this._app_list = {};
 
@@ -63,6 +66,11 @@ export class Starter implements IStarter {
             const app = this._app_list[app_name];
 
             if (app.close === false) {
+
+                app.once("close", () => {
+                    this.emit("app:close", app_name);
+                });
+
                 app.stop();
             }
         }

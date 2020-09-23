@@ -8,6 +8,7 @@ export interface IStarterAppConfig {
     critical: boolean
     restart: boolean
     restart_interval: number
+    close_interval: number
     env: {
         scope: string
         include_regexp: string
@@ -17,7 +18,7 @@ export interface IStarterAppConfig {
     }
 }
 
-export interface IStarter {
+export interface IStarter extends EventEmitter {
     stop: () => void
     run: () => void
     readonly count: number

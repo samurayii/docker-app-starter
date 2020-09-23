@@ -1,0 +1,14 @@
+[logger]
+    mode = "debug"
+    timestamp = "time"
+
+[[app]]
+    name = "app"
+    cwd = "./"
+    command = "node ./tests/test_app3.js"
+    critical = true
+    [app.env]
+        scope = "all"
+        include_regexp = ".*"
+        [app.env.keys]
+            APP_NAME = "app-name"

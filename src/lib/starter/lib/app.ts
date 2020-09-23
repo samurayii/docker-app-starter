@@ -32,7 +32,7 @@ export class App extends EventEmitter implements IStarterApp  {
             fs.mkdirSync(this._full_cwd_path, {
                 recursive: true
             });
-            this._logger.log(`[Starter] Created cwd folder ${this._full_cwd_path} for app ${this._config.name}`, "dev");
+            this._logger.log(`[Starter] Created cwd folder ${this._full_cwd_path} for application ${this._config.name}`, "dev");
         }
 
         for (const key_name in this._config.env.keys) {
@@ -52,7 +52,7 @@ export class App extends EventEmitter implements IStarterApp  {
 
         }
 
-        this._logger.info(`[Starter] App ${this._config.name} created`);
+        this._logger.info(`[Starter] Application ${this._config.name} created`);
     }
 
     run (): void {
@@ -64,7 +64,7 @@ export class App extends EventEmitter implements IStarterApp  {
         this._closed_flag = false;
         this._restarting_flag = false;
 
-        this._logger.log(`[Starter] App ${this._config.name} starting ...`, "dev");
+        this._logger.log(`[Starter] Application ${this._config.name} starting ...`, "dev");
 
         let env: { [key: string]: string }  = {};
 
@@ -111,14 +111,14 @@ export class App extends EventEmitter implements IStarterApp  {
 
             this._closed_flag = true;
 
-            this._logger.log(`[Starter] App ${this._config.name} closed, with code ${code}`, "dev");
+            this._logger.log(`[Starter] Application ${this._config.name} closed, with code ${code}`, "dev");
 
             if (this._stopping_flag === true) {
                 return;
             }
 
             if (this._config.critical === true) {
-                this._logger.log(`[Starter] Closed critical app ${this._config.name}`, "dev");
+                this._logger.log(`[Starter] Closed critical application ${this._config.name}`, "dev");
                 this.emit("close", this._config.name);
                 return;
             }
@@ -130,7 +130,7 @@ export class App extends EventEmitter implements IStarterApp  {
 
             this._restarting_flag = true;
 
-            this._logger.log(`[Starter] Restarting app ${this._config.name}, after ${this._config.restart_interval} sec`);
+            this._logger.log(`[Starter] Restarting application ${this._config.name}, after ${this._config.restart_interval} sec`);
 
             this._id_interval = setTimeout( () => {
                 this.run();
@@ -139,7 +139,7 @@ export class App extends EventEmitter implements IStarterApp  {
         });
 
         this._app.on("error", (error) => {
-            this._logger.error(`[Starter] Starting app ${this._config.name} error.`);
+            this._logger.error(`[Starter] Starting application ${this._config.name} error.`);
             this._logger.log(error);
             this.emit("error", this._config.name);
         });
@@ -152,7 +152,7 @@ export class App extends EventEmitter implements IStarterApp  {
             return;
         }
 
-        this._logger.log(`[Starter] App ${this._config.name} stopping ...`, "dev");
+        this._logger.log(`[Starter] Application ${this._config.name} stopping ...`, "dev");
 
         this._closed_flag = true;
         this._stopping_flag = true;
@@ -161,6 +161,13 @@ export class App extends EventEmitter implements IStarterApp  {
         clearTimeout(this._id_interval);
 
         this._app.kill();
+
+        setTimeout( () => {
+            if (this.close === false) {
+                this._logger.log(`[Starter] Application ${this._config.name} forced close`);
+                this.emit("close", this._config.name);
+            }
+        }, this._config.close_interval * 1000);
 
     }
 
