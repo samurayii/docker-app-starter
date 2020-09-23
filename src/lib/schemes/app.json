@@ -36,6 +36,7 @@
         },
         "env": {
             "type": "object",
+            "default": {},
             "properties": {
                 "scope": {
                     "type": "string",
