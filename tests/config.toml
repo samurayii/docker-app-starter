@@ -4,8 +4,8 @@
 
 [[app]]
     name = "app"
-    cwd = "./"
-    command = "node ./tests/test_app3.js"
+    cwd = "tests"
+    command = "node ./test_app3.js"
     critical = true
     [app.env]
         scope = "all"
