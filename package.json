@@ -47,7 +47,7 @@
         "eslint": "^7.24.0",
         "files-copier": "^0.1.1",
         "json-key-remover": "^0.0.3",
-        "mocha": "^8.3.2",
+        "mocha": "^10.1.0",
         "npm-check-updates": "^11.4.1",
         "rimraf": "^3.0.2",
         "ts-node": "^9.1.1",
