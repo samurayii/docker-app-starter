@@ -48,7 +48,7 @@
         "files-copier": "^0.1.1",
         "json-key-remover": "^0.0.3",
         "mocha": "^8.3.2",
-        "npm-check-updates": "^11.4.1",
+        "npm-check-updates": "^16.7.4",
         "rimraf": "^3.0.2",
         "ts-node": "^9.1.1",
         "typescript": "^4.2.4"
